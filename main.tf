@@ -25,7 +25,7 @@ resource "aws_instance" "squidproxy" {
   provisioner "remote-exec" {
     inline = [
       "sudo sed -i '/ALLOW ACCESS FROM YOUR CLIENTS/a http_access allow all' /etc/squid/squid.conf",
-      "sudo sed -i 's/http_port 3128/http_port ${self.public_ip}:3128/' /etc/squid/squid.conf",
+      "sudo sed -i 's/http_port 3128/http_port ${self.private_ip}:3128/' /etc/squid/squid.conf",
       "sudo systemctl restart squid"
     ]
   }
