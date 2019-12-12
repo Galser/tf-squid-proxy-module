@@ -12,6 +12,9 @@ if [ $? -ne 0 ]; then
   done # APT repeats
   exit 1
 fi
+sleep 3
+sudo apt update -y
+sleep 3
 which squid || (
   sudo apt install -y curl wget squid
 )
