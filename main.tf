@@ -4,7 +4,7 @@
 
 
 resource "aws_instance" "squidproxy" {
-  count                  = "${var.max_servers}"
+  count                  = var.max_servers
   ami                    = var.ami
   instance_type          = var.instance_type
   subnet_id              = var.subnet_id
@@ -14,7 +14,7 @@ resource "aws_instance" "squidproxy" {
   connection {
     user        = "ubuntu"
     type        = "ssh"
-    private_key = "${file("${var.key_path}")}"
+    private_key = file("${var.key_path}")
     host        = self.public_ip
   }
 
